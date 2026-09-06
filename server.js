@@ -691,16 +691,32 @@ const server = http.createServer((req, res) => {
 
     // Redirect root URL to frontend
     if (pathname === '/') {
+    const filePath = path.join(
+        __dirname,
+        'frontend',
+        'pages',
+        'login.html'
+    );
 
-        res.writeHead(302, {
-            'Location':
-                '/frontend/pages/login.html'
+    fs.readFile(filePath, (err, content) => {
+        if (err) {
+            res.writeHead(500, {
+                'Content-Type': 'text/html'
+            });
+
+            res.end('<h1>Server Error</h1>');
+            return;
+        }
+
+        res.writeHead(200, {
+            'Content-Type': 'text/html'
         });
 
-        res.end();
+        res.end(content);
+    });
 
-        return;
-    }
+    return;
+}
 
 
     let filePath =
