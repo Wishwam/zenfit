@@ -694,7 +694,7 @@ const server = http.createServer((req, res) => {
 
         res.writeHead(302, {
             'Location':
-                '/frontend/pages/index.html'
+                '/frontend/pages/login.html'
         });
 
         res.end();
