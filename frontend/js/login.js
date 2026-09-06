@@ -1,527 +1,657 @@
-// ========================================
-//  ZENFIT — Login / Signup Scripts (Pure localStorage)
-// ========================================
+// =====================================================
+// ZENFIT LOGIN / SIGNUP
+// =====================================================
 
-// In-memory user store
 let usersDB = [];
 
-/**
- * Load users from localStorage (pre-seeding from data/users.json if empty)
- */
+
+// =====================================================
+// LOAD USERS
+// =====================================================
+
 async function loadUsers() {
     try {
-        const storedUsers = localStorage.getItem('zenfit_users');
 
-        if (storedUsers) {
-            usersDB = JSON.parse(storedUsers);
+        const localUsers =
+            JSON.parse(
+                localStorage.getItem("zenfit_users") || "null"
+            );
+
+        if (localUsers && Array.isArray(localUsers)) {
+            usersDB = localUsers;
             return;
         }
-    } catch (err) {
-        console.warn('Error reading zenfit_users from localStorage:', err);
-    }
 
-    // Pre-seed from static data/users.json file if localStorage is empty
-    try {
-        const response = await fetch('/data/users.json');
 
-        if (response.ok) {
-            const data = await response.json();
-            usersDB = data.users || [];
+        // users.json is two levels above frontend/js/
+        const response =
+            await fetch("../../data/users.json");
+
+
+        if (!response.ok) {
+            throw new Error("Unable to load users");
         }
-    } catch (err) {
-        console.warn(
-            'Could not load users.json, starting with default user store:',
-            err
+
+
+        const data =
+            await response.json();
+
+
+        usersDB =
+            data.users || [];
+
+
+        localStorage.setItem(
+            "zenfit_users",
+            JSON.stringify(usersDB)
         );
 
+
+    } catch (error) {
+
+        console.error(
+            "Error loading users:",
+            error
+        );
+
+
+        // Fallback demo users
         usersDB = [
             {
                 id: 1,
-                fullName: 'Akshat Sharma',
-                email: 'akshat@zenfit.com',
-                password: 'akshat123'
+                fullName: "Akshat Sharma",
+                email: "akshat@zenfit.com",
+                password: "akshat123"
             },
             {
                 id: 2,
-                fullName: 'Demo User',
-                email: 'demo@zenfit.com',
-                password: 'demo1234'
+                fullName: "Demo User",
+                email: "demo@zenfit.com",
+                password: "demo1234"
+            },
+            {
+                id: 3,
+                fullName: "Demon",
+                email: "demon@gmail.com",
+                password: "demo1234"
             }
         ];
     }
+}
 
-    try {
-        localStorage.setItem(
-            'zenfit_users',
-            JSON.stringify(usersDB)
-        );
-    } catch (e) {
-        console.warn(
-            'Could not save initial users to localStorage:',
-            e
-        );
+
+// =====================================================
+// ELEMENTS
+// =====================================================
+
+const loginView =
+    document.getElementById("loginView");
+
+const signupView =
+    document.getElementById("signupView");
+
+const showSignupBtn =
+    document.getElementById("showSignup");
+
+const showLoginBtn =
+    document.getElementById("showLogin");
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const signupForm =
+    document.getElementById("signupForm");
+
+
+// =====================================================
+// SHOW LOGIN
+// =====================================================
+
+function showLogin() {
+
+    if (loginView) {
+        loginView.style.display = "block";
+    }
+
+    if (signupView) {
+        signupView.style.display = "none";
     }
 }
 
 
-// ========================================
-//  VIEW TOGGLING (Signup ↔ Login)
-// ========================================
+// =====================================================
+// SHOW SIGNUP
+// =====================================================
 
-/**
- * Switch to the Login view
- */
-function showLogin(event) {
-    if (event) event.preventDefault();
+function showSignup() {
 
-    // Hide signup, show login
-    document.getElementById('signupView').style.display = 'none';
-    document.getElementById('loginView').style.display = 'block';
+    if (loginView) {
+        loginView.style.display = "none";
+    }
 
-    // Swap headings
-    document.getElementById('signupHeading').style.display = 'none';
-    document.getElementById('loginHeading').style.display = 'block';
-
-    // Re-trigger fade-in animation
-    replayAnimation('loginView');
-    replayAnimation('loginHeading');
-
-    // Re-bind focus animations for new inputs
-    initInputAnimations();
-}
-
-/**
- * Switch to the Signup view
- */
-function showSignup(event) {
-    if (event) event.preventDefault();
-
-    // Hide login, show signup
-    document.getElementById('loginView').style.display = 'none';
-    document.getElementById('signupView').style.display = 'block';
-
-    // Swap headings
-    document.getElementById('loginHeading').style.display = 'none';
-    document.getElementById('signupHeading').style.display = 'block';
-
-    // Re-trigger fade-in animation
-    replayAnimation('signupView');
-    replayAnimation('signupHeading');
-
-    // Re-bind focus animations for new inputs
-    initInputAnimations();
-}
-
-/**
- * Replay CSS animation on an element by briefly removing it from the DOM flow
- */
-function replayAnimation(elementId) {
-    const el = document.getElementById(elementId);
-
-    if (!el) return;
-
-    el.style.animation = 'none';
-
-    // Trigger reflow
-    void el.offsetHeight;
-
-    el.style.animation = '';
-}
-
-
-// ========================================
-//  PASSWORD TOGGLE
-// ========================================
-
-/**
- * Toggle password field visibility
- * @param {string} inputId - The ID of the password input
- * @param {HTMLElement} btn - The toggle button element
- */
-function togglePasswordVisibility(inputId, btn) {
-    const passwordInput = document.getElementById(inputId);
-    const eyeOpen = btn.querySelector('.eye-open');
-    const eyeClosed = btn.querySelector('.eye-closed');
-
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeOpen.style.display = 'none';
-        eyeClosed.style.display = 'block';
-    } else {
-        passwordInput.type = 'password';
-        eyeOpen.style.display = 'block';
-        eyeClosed.style.display = 'none';
+    if (signupView) {
+        signupView.style.display = "block";
     }
 }
 
 
-// ========================================
-//  STATUS TOAST
-// ========================================
+// =====================================================
+// TOGGLE BUTTONS
+// =====================================================
 
-let toastTimeout = null;
+if (showSignupBtn) {
 
-/**
- * Show a status toast message
- * @param {string} message - Text to display
- * @param {'success'|'error'} type - Toast variant
- */
-function showToast(message, type) {
-    const toast = document.getElementById('statusToast');
+    showSignupBtn.addEventListener(
+        "click",
+        function (event) {
 
-    if (!toast) return;
+            event.preventDefault();
 
-    // Clear any existing timeout
-    if (toastTimeout) clearTimeout(toastTimeout);
+            showSignup();
+        }
+    );
+}
 
-    // Reset classes
-    toast.className = 'status-toast';
+
+if (showLoginBtn) {
+
+    showLoginBtn.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            showLogin();
+        }
+    );
+}
+
+
+// =====================================================
+// PASSWORD VISIBILITY
+// =====================================================
+
+document
+    .querySelectorAll(".toggle-password")
+    .forEach(function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const input =
+                    document.getElementById(
+                        button.dataset.target
+                    );
+
+                if (!input) {
+                    return;
+                }
+
+
+                if (input.type === "password") {
+
+                    input.type = "text";
+
+                    button.textContent = "🙈";
+
+                } else {
+
+                    input.type = "password";
+
+                    button.textContent = "👁";
+                }
+            }
+        );
+    });
+
+
+// =====================================================
+// TOAST MESSAGE
+// =====================================================
+
+function showToast(message, type = "success") {
+
+    let toast =
+        document.getElementById("toast");
+
+
+    if (!toast) {
+
+        toast =
+            document.createElement("div");
+
+        toast.id = "toast";
+
+        document.body.appendChild(toast);
+    }
+
+
     toast.textContent = message;
 
-    // Force reflow then add classes
-    void toast.offsetHeight;
 
-    toast.classList.add(type, 'visible');
+    toast.className =
+        `toast ${type}`;
 
-    // Auto-hide after 3 seconds
-    toastTimeout = setTimeout(() => {
-        toast.classList.remove('visible');
+
+    toast.classList.add("show");
+
+
+    setTimeout(function () {
+
+        toast.classList.remove("show");
+
     }, 3000);
 }
 
 
-// ========================================
-//  SIGNUP HANDLER
-// ========================================
+// =====================================================
+// LOGIN
+// =====================================================
 
-/**
- * Handle signup form submission
- * Validates and saves new user directly into localStorage
- */
-async function handleSignup(event) {
-    event.preventDefault();
+if (loginForm) {
 
-    const fullName =
-        document.getElementById('fullName').value.trim();
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
 
-    const email =
-        document.getElementById('signupEmail').value
-            .trim()
-            .toLowerCase();
+            event.preventDefault();
 
-    const password =
-        document.getElementById('signupPassword').value;
 
-    clearErrors();
+            const emailInput =
+                document.getElementById("loginEmail");
 
-    // Refresh users from localStorage
-    try {
-        const stored =
-            localStorage.getItem('zenfit_users');
+            const passwordInput =
+                document.getElementById("loginPassword");
 
-        if (stored) {
-            usersDB = JSON.parse(stored);
+
+            if (!emailInput || !passwordInput) {
+                return;
+            }
+
+
+            const email =
+                emailInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email || !password) {
+
+                showToast(
+                    "Please enter email and password",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Make sure users are loaded
+            if (usersDB.length === 0) {
+                await loadUsers();
+            }
+
+
+            const user =
+                usersDB.find(function (item) {
+
+                    return (
+                        item.email &&
+                        item.email.toLowerCase() === email
+                    );
+                });
+
+
+            if (!user) {
+
+                showToast(
+                    "No account found with this email",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (user.password !== password) {
+
+                showToast(
+                    "Incorrect password",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Save logged-in user
+            localStorage.setItem(
+                "zenfit_user",
+                JSON.stringify(user)
+            );
+
+
+            localStorage.setItem(
+                "currentUserEmail",
+                user.email
+            );
+
+
+            // Keep profile data available
+            const existingProfile =
+                JSON.parse(
+                    localStorage.getItem(
+                        "zenfitProfile"
+                    ) || "null"
+                );
+
+
+            if (!existingProfile) {
+
+                localStorage.setItem(
+                    "zenfitProfile",
+                    JSON.stringify({
+                        name:
+                            user.fullName ||
+                            user.name ||
+                            "User",
+
+                        email:
+                            user.email,
+
+                        phone: "",
+                        password:
+                            user.password || "",
+
+                        gender: "",
+                        age: "",
+                        height: "",
+                        weight: "",
+                        bodyFat: "",
+                        goal: ""
+                    })
+                );
+            }
+
+
+            showToast(
+                "Login successful! Redirecting...",
+                "success"
+            );
+
+
+            // IMPORTANT:
+            // dashboard.html is in the same folder
+            // as login.html
+            setTimeout(function () {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 1000);
+
         }
-    } catch (e) {}
-
-    // Check if email exists
-    const exists = usersDB.find(
-        u =>
-            u.email &&
-            u.email.toLowerCase() === email
     );
+}
 
-    if (exists) {
-        markError('signupEmail');
 
-        showToast(
-            'This email is already registered. Try signing in!',
-            'error'
-        );
+// =====================================================
+// SIGNUP
+// =====================================================
 
-        return;
-    }
+if (signupForm) {
 
-    const newUser = {
-        id:
-            usersDB.length > 0
-                ? Math.max(
-                    ...usersDB.map(
-                        u => u.id || 0
-                    )
-                ) + 1
-                : 1,
+    signupForm.addEventListener(
+        "submit",
+        async function (event) {
 
-        fullName: fullName,
-        email: email,
-        password: password,
-        createdTime: new Date().toISOString()
-    };
+            event.preventDefault();
 
-    usersDB.push(newUser);
 
-    try {
-        localStorage.setItem(
-            'zenfit_users',
-            JSON.stringify(usersDB)
-        );
-    } catch (e) {
-        console.error(
-            'Failed to save to localStorage:',
-            e
-        );
-    }
+            const nameInput =
+                document.getElementById("signupName");
 
-    showToast(
-        'Account created successfully! Switching to login...',
-        'success'
-    );
+            const emailInput =
+                document.getElementById("signupEmail");
 
-    setTimeout(() => {
-        showLogin(null);
+            const passwordInput =
+                document.getElementById(
+                    "signupPassword"
+                );
 
-        const loginEmailInput =
-            document.getElementById('loginEmail');
 
-        if (loginEmailInput) {
-            loginEmailInput.value = email;
+            if (
+                !nameInput ||
+                !emailInput ||
+                !passwordInput
+            ) {
+                return;
+            }
+
+
+            const fullName =
+                nameInput.value.trim();
+
+
+            const email =
+                emailInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                passwordInput.value;
+
+
+            if (
+                !fullName ||
+                !email ||
+                !password
+            ) {
+
+                showToast(
+                    "Please fill all fields",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                showToast(
+                    "Password must be at least 6 characters",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            if (usersDB.length === 0) {
+                await loadUsers();
+            }
+
+
+            const existingUser =
+                usersDB.find(function (user) {
+
+                    return (
+                        user.email &&
+                        user.email.toLowerCase() === email
+                    );
+                });
+
+
+            if (existingUser) {
+
+                showToast(
+                    "Email already registered",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const newUser = {
+
+                id:
+                    usersDB.length > 0
+                        ? Math.max(
+                            ...usersDB.map(
+                                user =>
+                                    user.id || 0
+                            )
+                        ) + 1
+                        : 1,
+
+                fullName,
+
+                email,
+
+                password,
+
+                createdTime:
+                    new Date().toISOString()
+            };
+
+
+            usersDB.push(newUser);
+
+
+            localStorage.setItem(
+                "zenfit_users",
+                JSON.stringify(usersDB)
+            );
+
+
+            localStorage.setItem(
+                "zenfit_user",
+                JSON.stringify(newUser)
+            );
+
+
+            localStorage.setItem(
+                "currentUserEmail",
+                email
+            );
+
+
+            localStorage.setItem(
+                "zenfitProfile",
+                JSON.stringify({
+
+                    name: fullName,
+
+                    email,
+
+                    phone: "",
+
+                    password,
+
+                    gender: "",
+
+                    age: "",
+
+                    height: "",
+
+                    weight: "",
+
+                    bodyFat: "",
+
+                    goal: ""
+                })
+            );
+
+
+            showToast(
+                "Account created successfully!",
+                "success"
+            );
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 1000);
+
         }
-    }, 1500);
+    );
 }
 
 
-// ========================================
-//  LOGIN HANDLER
-// ========================================
+// =====================================================
+// INPUT ANIMATION
+// =====================================================
 
-/**
- * Handle login form submission
- * Validates credentials via localStorage store
- */
-async function handleLogin(event) {
-    event.preventDefault();
+document
+    .querySelectorAll("input")
+    .forEach(function (input) {
 
-    const email =
-        document.getElementById('loginEmail').value
-            .trim()
-            .toLowerCase();
+        input.addEventListener(
+            "focus",
+            function () {
 
-    const password =
-        document.getElementById('loginPassword').value;
+                input.parentElement?.classList.add(
+                    "focused"
+                );
+            }
+        );
 
-    // Clear previous error states
-    clearErrors();
 
-    // Refresh users from localStorage
-    try {
-        const stored =
-            localStorage.getItem('zenfit_users');
+        input.addEventListener(
+            "blur",
+            function () {
 
-        if (stored) {
-            usersDB = JSON.parse(stored);
+                if (!input.value) {
+
+                    input.parentElement?.classList.remove(
+                        "focused"
+                    );
+                }
+            }
+        );
+    });
+
+
+// =====================================================
+// GOOGLE SIGN-IN PLACEHOLDER
+// =====================================================
+
+const googleBtn =
+    document.querySelector(
+        ".google-btn"
+    );
+
+
+if (googleBtn) {
+
+    googleBtn.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            showToast(
+                "Google Sign-In is not configured yet.",
+                "error"
+            );
         }
-    } catch (e) {}
-
-    const matched = usersDB.find(
-        u =>
-            u.email &&
-            u.email.toLowerCase() === email
-    );
-
-    if (!matched) {
-        markError('loginEmail');
-
-        showToast(
-            'No account found with this email.',
-            'error'
-        );
-
-        return;
-    }
-
-    if (matched.password !== password) {
-        markError('loginPassword');
-
-        showToast(
-            'Incorrect password.',
-            'error'
-        );
-
-        return;
-    }
-
-    // Save active session in localStorage
-    localStorage.setItem(
-        'zenfit_user',
-        JSON.stringify(matched)
-    );
-
-    localStorage.setItem(
-        'zenfitProfile',
-        JSON.stringify({
-            name:
-                matched.fullName ||
-                matched.name ||
-                'User',
-
-            email:
-                matched.email ||
-                '',
-
-            gender:
-                matched.gender ||
-                'Male',
-
-            age:
-                matched.age ||
-                '25',
-
-            height:
-                matched.height ||
-                '175',
-
-            weight:
-                matched.weight ||
-                '70',
-
-            goal:
-                matched.fitnessGoal ||
-                matched.goal ||
-                'Maintain Fitness',
-
-            bmi:
-                matched.bmi ||
-                '22.9'
-        })
-    );
-
-    localStorage.setItem(
-        'currentUserEmail',
-        matched.email || ''
-    );
-
-    showToast(
-        `Welcome back, ${matched.fullName || 'User'}!`,
-        'success'
-    );
-
-    // ========================================
-    //  CLEAN DASHBOARD URL
-    // ========================================
-
-    setTimeout(() => {
-        window.location.href = '/dashboard';
-    }, 1200);
-}
-
-
-// ========================================
-//  ERROR HELPERS
-// ========================================
-
-/**
- * Add error styling to an input's parent group
- */
-function markError(inputId) {
-    const input =
-        document.getElementById(inputId);
-
-    if (input) {
-        input
-            .closest('.input-group')
-            .classList.add('error');
-    }
-}
-
-/**
- * Remove all error states from input groups
- */
-function clearErrors() {
-    document
-        .querySelectorAll('.input-group.error')
-        .forEach(group => {
-            group.classList.remove('error');
-        });
-}
-
-
-// ========================================
-//  GOOGLE SIGN IN (placeholder)
-// ========================================
-
-function handleGoogleSignIn() {
-    console.log(
-        'Google Sign In clicked — Add your OAuth configuration'
-    );
-
-    showToast(
-        'Google Sign In coming soon!',
-        'error'
     );
 }
 
 
-// ========================================
-//  INPUT FOCUS ANIMATIONS
-// ========================================
+// =====================================================
+// INITIALIZE
+// =====================================================
 
-function initInputAnimations() {
-    document
-        .querySelectorAll('.input-group input')
-        .forEach(input => {
-
-            // Remove existing listeners to avoid duplicates
-            input.removeEventListener(
-                'focus',
-                handleInputFocus
-            );
-
-            input.removeEventListener(
-                'blur',
-                handleInputBlur
-            );
-
-            input.addEventListener(
-                'focus',
-                handleInputFocus
-            );
-
-            input.addEventListener(
-                'blur',
-                handleInputBlur
-            );
-        });
-}
-
-function handleInputFocus() {
-    this
-        .closest('.input-group')
-        .classList.add('focused');
-
-    this
-        .closest('.input-group')
-        .classList.remove('error');
-}
-
-function handleInputBlur() {
-    this
-        .closest('.input-group')
-        .classList.remove('focused');
-}
-
-
-// ========================================
-//  INITIALIZATION
-// ========================================
-
-document.addEventListener(
-    'DOMContentLoaded',
-    async () => {
-
-        // Load users from localStorage / static JSON
-        await loadUsers();
-
-        // Init input animations
-        initInputAnimations();
-    }
-);
+loadUsers();

@@ -1,14 +1,17 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const bcrypt = require('bcryptjs');
 
 const PORT = process.env.PORT || 3000;
+
 const USERS_FILE = path.join(__dirname, 'data', 'users.json');
 const SESSION_FILE = path.join(__dirname, 'data', 'session.json');
 
 
-// Helper to read users from JSON file
+// =====================================================
+// READ USERS
+// =====================================================
+
 function getUsersFromFile() {
     try {
         if (!fs.existsSync(USERS_FILE)) {
@@ -26,7 +29,10 @@ function getUsersFromFile() {
 }
 
 
-// Helper to write users to JSON file
+// =====================================================
+// SAVE USERS
+// =====================================================
+
 function saveUsersToFile(users) {
     try {
         const dir = path.dirname(USERS_FILE);
@@ -49,25 +55,36 @@ function saveUsersToFile(users) {
 }
 
 
-// Helper to read session from JSON file
+// =====================================================
+// READ SESSION
+// =====================================================
+
 function getSessionFromFile() {
     try {
         if (!fs.existsSync(SESSION_FILE)) {
-            return { currentUser: null };
+            return {
+                currentUser: null
+            };
         }
 
         const data = fs.readFileSync(SESSION_FILE, 'utf8');
 
         return JSON.parse(data);
+
     } catch (err) {
         console.error('Error reading session file:', err);
 
-        return { currentUser: null };
+        return {
+            currentUser: null
+        };
     }
 }
 
 
-// Helper to write session to JSON file
+// =====================================================
+// SAVE SESSION
+// =====================================================
+
 function saveSessionToFile(sessionData) {
     try {
         const dir = path.dirname(SESSION_FILE);
@@ -83,6 +100,7 @@ function saveSessionToFile(sessionData) {
         );
 
         return true;
+
     } catch (err) {
         console.error('Error writing session file:', err);
         return false;
@@ -90,7 +108,10 @@ function saveSessionToFile(sessionData) {
 }
 
 
-// MIME types for static files
+// =====================================================
+// MIME TYPES
+// =====================================================
+
 const MIME_TYPES = {
     '.html': 'text/html',
     '.css': 'text/css',
@@ -100,25 +121,41 @@ const MIME_TYPES = {
     '.jpg': 'image/jpeg',
     '.jpeg': 'image/jpeg',
     '.svg': 'image/svg+xml',
-    '.ico': 'image/x-icon'
+    '.ico': 'image/x-icon',
+    '.webp': 'image/webp'
 };
 
 
+// =====================================================
+// SERVER
+// =====================================================
+
 const server = http.createServer((req, res) => {
 
-    // Enable CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // -------------------------------------------------
+    // CORS
+    // -------------------------------------------------
+
+    res.setHeader(
+        'Access-Control-Allow-Origin',
+        '*'
+    );
+
     res.setHeader(
         'Access-Control-Allow-Methods',
         'GET, POST, OPTIONS'
     );
+
     res.setHeader(
         'Access-Control-Allow-Headers',
         'Content-Type'
     );
 
 
-    // Handle preflight requests
+    // -------------------------------------------------
+    // OPTIONS
+    // -------------------------------------------------
+
     if (req.method === 'OPTIONS') {
         res.writeHead(200);
         res.end();
@@ -134,11 +171,14 @@ const server = http.createServer((req, res) => {
     const pathname = parsedUrl.pathname;
 
 
-    // =====================================================
-    // API ENDPOINT: GET /api/users
-    // =====================================================
+    // =================================================
+    // GET /api/users
+    // =================================================
 
-    if (pathname === '/api/users' && req.method === 'GET') {
+    if (
+        pathname === '/api/users' &&
+        req.method === 'GET'
+    ) {
 
         const users = getUsersFromFile();
 
@@ -146,15 +186,19 @@ const server = http.createServer((req, res) => {
             'Content-Type': 'application/json'
         });
 
-        res.end(JSON.stringify({ users }));
+        res.end(
+            JSON.stringify({
+                users
+            })
+        );
 
         return;
     }
 
 
-    // =====================================================
-    // API ENDPOINT: GET /api/current-user
-    // =====================================================
+    // =================================================
+    // GET /api/current-user
+    // =================================================
 
     if (
         pathname === '/api/current-user' &&
@@ -177,9 +221,9 @@ const server = http.createServer((req, res) => {
     }
 
 
-    // =====================================================
-    // API ENDPOINT: POST /api/login
-    // =====================================================
+    // =================================================
+    // POST /api/login
+    // =================================================
 
     if (
         pathname === '/api/login' &&
@@ -191,7 +235,6 @@ const server = http.createServer((req, res) => {
         req.on('data', chunk => {
             body += chunk.toString();
         });
-
 
         req.on('end', () => {
 
@@ -223,9 +266,8 @@ const server = http.createServer((req, res) => {
 
 
                 const userIndex = users.findIndex(
-                    u =>
-                        u.email &&
-                        u.email.toLowerCase() ===
+                    user =>
+                        user.email.toLowerCase() ===
                         email.toLowerCase()
                 );
 
@@ -238,8 +280,7 @@ const server = http.createServer((req, res) => {
 
                     res.end(
                         JSON.stringify({
-                            error:
-                                'No account found with this email'
+                            error: 'No account found with this email'
                         })
                     );
 
@@ -247,34 +288,10 @@ const server = http.createServer((req, res) => {
                 }
 
 
-                const user = users[userIndex];
-
-                const storedPassword = user.password;
-
-                let passwordMatches = false;
-
-
-                // Check bcrypt password
                 if (
-                    storedPassword &&
-                    storedPassword.startsWith('$2')
+                    users[userIndex].password !==
+                    password
                 ) {
-
-                    passwordMatches =
-                        bcrypt.compareSync(
-                            password,
-                            storedPassword
-                        );
-
-                } else {
-
-                    // Support old plaintext passwords
-                    passwordMatches =
-                        storedPassword === password;
-                }
-
-
-                if (!passwordMatches) {
 
                     res.writeHead(401, {
                         'Content-Type': 'application/json'
@@ -290,31 +307,21 @@ const server = http.createServer((req, res) => {
                 }
 
 
-                // Upgrade old plaintext password
-                // to bcrypt hash after successful login
-                if (
-                    storedPassword &&
-                    !storedPassword.startsWith('$2')
-                ) {
-
-                    user.password =
-                        bcrypt.hashSync(password, 10);
-                }
+                const user = users[userIndex];
 
 
                 user.lastLogin =
                     new Date().toISOString();
 
-                users[userIndex] = user;
 
+                users[userIndex] = user;
 
                 saveUsersToFile(users);
 
 
                 saveSessionToFile({
                     currentUser: user,
-                    loggedInAt:
-                        new Date().toISOString()
+                    loggedInAt: new Date().toISOString()
                 });
 
 
@@ -328,6 +335,7 @@ const server = http.createServer((req, res) => {
                         user
                     })
                 );
+
 
             } catch (e) {
 
@@ -348,9 +356,9 @@ const server = http.createServer((req, res) => {
     }
 
 
-    // =====================================================
-    // API ENDPOINT: POST /api/logout
-    // =====================================================
+    // =================================================
+    // POST /api/logout
+    // =================================================
 
     if (
         pathname === '/api/logout' &&
@@ -359,8 +367,7 @@ const server = http.createServer((req, res) => {
 
         saveSessionToFile({
             currentUser: null,
-            loggedOutAt:
-                new Date().toISOString()
+            loggedOutAt: new Date().toISOString()
         });
 
 
@@ -378,9 +385,9 @@ const server = http.createServer((req, res) => {
     }
 
 
-    // =====================================================
-    // API ENDPOINT: POST /api/update-user
-    // =====================================================
+    // =================================================
+    // POST /api/update-user
+    // =================================================
 
     if (
         pathname === '/api/update-user' &&
@@ -400,7 +407,8 @@ const server = http.createServer((req, res) => {
 
                 const updates = JSON.parse(body);
 
-                const session = getSessionFromFile();
+                const session =
+                    getSessionFromFile();
 
 
                 if (!session.currentUser) {
@@ -419,34 +427,22 @@ const server = http.createServer((req, res) => {
                 }
 
 
-                const users = getUsersFromFile();
+                const users =
+                    getUsersFromFile();
 
 
-                const userIndex = users.findIndex(
-                    u =>
-                        u.id === session.currentUser.id ||
-                        (
-                            u.email &&
-                            session.currentUser.email &&
-                            u.email.toLowerCase() ===
-                            session.currentUser.email.toLowerCase()
-                        )
-                );
+                const userIndex =
+                    users.findIndex(
+                        user =>
+                            user.id ===
+                                session.currentUser.id ||
+
+                            user.email.toLowerCase() ===
+                                session.currentUser.email.toLowerCase()
+                    );
 
 
                 if (userIndex !== -1) {
-
-
-                    // Hash password if user updates password
-                    if (updates.password) {
-
-                        updates.password =
-                            bcrypt.hashSync(
-                                updates.password,
-                                10
-                            );
-                    }
-
 
                     users[userIndex] = {
                         ...users[userIndex],
@@ -467,6 +463,7 @@ const server = http.createServer((req, res) => {
                     res.writeHead(200, {
                         'Content-Type': 'application/json'
                     });
+
 
                     res.end(
                         JSON.stringify({
@@ -508,9 +505,9 @@ const server = http.createServer((req, res) => {
     }
 
 
-    // =====================================================
-    // API ENDPOINT: POST /api/signup
-    // =====================================================
+    // =================================================
+    // POST /api/signup
+    // =================================================
 
     if (
         pathname === '/api/signup' &&
@@ -555,15 +552,16 @@ const server = http.createServer((req, res) => {
                 }
 
 
-                const users = getUsersFromFile();
+                const users =
+                    getUsersFromFile();
 
 
-                const exists = users.find(
-                    u =>
-                        u.email &&
-                        u.email.toLowerCase() ===
-                        email.toLowerCase()
-                );
+                const exists =
+                    users.find(
+                        user =>
+                            user.email.toLowerCase() ===
+                            email.toLowerCase()
+                    );
 
 
                 if (exists) {
@@ -574,18 +572,12 @@ const server = http.createServer((req, res) => {
 
                     res.end(
                         JSON.stringify({
-                            error:
-                                'Email already registered'
+                            error: 'Email already registered'
                         })
                     );
 
                     return;
                 }
-
-
-                // Hash password before saving
-                const hashedPassword =
-                    bcrypt.hashSync(password, 10);
 
 
                 const newUser = {
@@ -594,7 +586,8 @@ const server = http.createServer((req, res) => {
                         users.length > 0
                             ? Math.max(
                                 ...users.map(
-                                    u => u.id || 0
+                                    user =>
+                                        user.id || 0
                                 )
                             ) + 1
                             : 1,
@@ -604,8 +597,7 @@ const server = http.createServer((req, res) => {
                     email:
                         email.toLowerCase(),
 
-                    password:
-                        hashedPassword,
+                    password,
 
                     createdTime:
                         new Date().toISOString()
@@ -622,19 +614,14 @@ const server = http.createServer((req, res) => {
                 if (saved) {
 
                     saveSessionToFile({
-
-                        currentUser:
-                            newUser,
-
+                        currentUser: newUser,
                         loggedInAt:
                             new Date().toISOString()
-
                     });
 
 
                     res.writeHead(201, {
-                        'Content-Type':
-                            'application/json'
+                        'Content-Type': 'application/json'
                     });
 
 
@@ -645,12 +632,10 @@ const server = http.createServer((req, res) => {
                         })
                     );
 
-
                 } else {
 
                     res.writeHead(500, {
-                        'Content-Type':
-                            'application/json'
+                        'Content-Type': 'application/json'
                     });
 
 
@@ -666,15 +651,13 @@ const server = http.createServer((req, res) => {
             } catch (e) {
 
                 res.writeHead(400, {
-                    'Content-Type':
-                        'application/json'
+                    'Content-Type': 'application/json'
                 });
 
 
                 res.end(
                     JSON.stringify({
-                        error:
-                            'Invalid JSON payload'
+                        error: 'Invalid JSON payload'
                     })
                 );
             }
@@ -685,51 +668,31 @@ const server = http.createServer((req, res) => {
     }
 
 
-    // =====================================================
+    // =================================================
     // STATIC FILE SERVING
-    // =====================================================
+    // =================================================
 
-    // Redirect root URL to frontend
+    // Root URL redirects to frontend index
     if (pathname === '/') {
-    const filePath = path.join(
-        __dirname,
-        'frontend',
-        'pages',
-        'login.html'
-    );
 
-    fs.readFile(filePath, (err, content) => {
-        if (err) {
-            res.writeHead(500, {
-                'Content-Type': 'text/html'
-            });
-
-            res.end('<h1>Server Error</h1>');
-            return;
-        }
-
-        res.writeHead(200, {
-            'Content-Type': 'text/html'
+        res.writeHead(302, {
+            Location:
+                '/frontend/pages/index.html'
         });
 
-        res.end(content);
-    });
+        res.end();
 
-    return;
-}
+        return;
+    }
 
 
-    let filePath =
-        path.join(
-            __dirname,
-            pathname
-        );
+    // Serve files from project root
+    const filePath =
+        path.join(__dirname, pathname);
 
 
     const ext =
-        path.extname(
-            filePath
-        ).toLowerCase();
+        path.extname(filePath).toLowerCase();
 
 
     const contentType =
@@ -746,8 +709,7 @@ const server = http.createServer((req, res) => {
                 if (err.code === 'ENOENT') {
 
                     res.writeHead(404, {
-                        'Content-Type':
-                            'text/html'
+                        'Content-Type': 'text/html'
                     });
 
                     res.end(
@@ -756,7 +718,9 @@ const server = http.createServer((req, res) => {
 
                 } else {
 
-                    res.writeHead(500);
+                    res.writeHead(500, {
+                        'Content-Type': 'text/plain'
+                    });
 
                     res.end(
                         `Server Error: ${err.code}`
@@ -766,16 +730,11 @@ const server = http.createServer((req, res) => {
             } else {
 
                 res.writeHead(200, {
-                    'Content-Type':
-                        contentType
+                    'Content-Type': contentType
                 });
 
-                res.end(
-                    content,
-                    'utf-8'
-                );
+                res.end(content);
             }
-
         }
     );
 
@@ -786,21 +745,18 @@ const server = http.createServer((req, res) => {
 // START SERVER
 // =====================================================
 
-server.listen(
-    PORT,
-    () => {
+server.listen(PORT, () => {
 
-        console.log(
-            `ZENFIT Backend Server running at http://localhost:${PORT}`
-        );
+    console.log(
+        `ZENFIT Backend Server running at http://localhost:${PORT}`
+    );
 
-        console.log(
-            `Users file located at: ${USERS_FILE}`
-        );
+    console.log(
+        `Users file located at: ${USERS_FILE}`
+    );
 
-        console.log(
-            `Session file located at: ${SESSION_FILE}`
-        );
+    console.log(
+        `Session file located at: ${SESSION_FILE}`
+    );
 
-    }
-);
+});
