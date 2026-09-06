@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZENFIT Yoga — Practice 10 essential yoga asanas, track your sessions, and build mindfulness.">
+  <title>ZENFIT — Yoga Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/yoga.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <a href="health.html" class="header-back-arrow" aria-label="Back to Health" title="Back to Health">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+      <div class="greeting-wrap">
+        <h1 class="greeting">
+          Yoga Dashboard <span style="font-size: 1.4rem;">🪷</span>
+        </h1>
+        <p class="greeting-sub">Find balance, calm your mind, strengthen your body</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="header-icon-btn" aria-label="Notifications">
+        <i class="fa-regular fa-bell"></i>
+      </button>
+      <button class="header-icon-btn" aria-label="Yoga Practice Mode">
+        <i class="fa-solid fa-spa"></i>
+      </button>
+      <div class="header-avatar" id="headerAvatar" role="button" tabindex="0" title="Personal Details" onclick="window.location.href='personal_details.html'" style="cursor: pointer;">
+        <span id="headerAvatarText">U</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <!-- ===== TOP STATS GRID ===== -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon-wrapper teal">
+          <i class="fa-regular fa-clock"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Session Time</h3>
+          <h1>12</h1>
+          <p>This week</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrapper cyan">
+          <i class="fa-solid fa-stopwatch"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Total Time</h3>
+          <h1>6h 45m</h1>
+          <p>This week</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon-wrapper orange">
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Streak</h3>
+          <h1>7 Days</h1>
+          <p>Keep it going</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRACTICE SECTION HEADER ===== -->
+    <section class="practice-header">
+      <span class="practice-subtag">THE PRACTICE</span>
+      <h2 class="practice-title">Yoga & Its Asanas</h2>
+      <p class="practice-desc">
+        Yoga unites breath, body, and attention. Each asana below is a doorway — hold it softly, breathe steadily, and let the shape teach you.
+      </p>
+    </section>
+
+    <!-- ===== 10 YOGA POSES ===== -->
+    <section class="poses-list">
+
+      <!-- POSE 1: TREE POSE -->
+      <article class="pose-card">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-pose.jpg" alt="Tree Pose - Vrksasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">TREE POSE</span>
+          <h3 class="pose-name">Vrksasana</h3>
+          <p class="pose-desc">
+            This pose is a standing balance posture that builds stillness and focus. Rooted through one leg, the sole of the other foot presses into the inner thigh or calf, strengthening balance and concentration, and cultivating a sense of grounded calm.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 2: WARRIOR II -->
+      <article class="pose-card reverse">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-hero.jpg" alt="Warrior II - Virabhadrasana II">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">WARRIOR II</span>
+          <h3 class="pose-name">Virabhadrasana II</h3>
+          <p class="pose-desc">
+            Warrior II opens the hips and chest, building stamina and stability in the legs. With arms extended wide and gaze steady over the front hand, this pose embodies strength, confidence, and mindful presence — a powerful reminder that calm and courage can coexist.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 3: DOWNWARD-FACING DOG -->
+      <article class="pose-card">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-dog.jpg" alt="Downward-Facing Dog - Adho Mukha Svanasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">DOWNWARD DOG</span>
+          <h3 class="pose-name">Adho Mukha Svanasana</h3>
+          <p class="pose-desc">
+            An essential inversion that stretches the hamstrings, shoulders, and calves while strengthening the upper body. Downward Dog energizes the whole body and brings fresh oxygenated blood to the brain.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 4: COBRA POSE -->
+      <article class="pose-card reverse">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-cobra.jpg" alt="Cobra Pose - Bhujangasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">COBRA POSE</span>
+          <h3 class="pose-name">Bhujangasana</h3>
+          <p class="pose-desc">
+            Bhujangasana is a gentle backbend that opens the heart, increases spinal flexibility, and strengthens the spine and abdominal organs. It relieves fatigue and stress while lifting the mood.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 5: TRIANGLE POSE -->
+      <article class="pose-card">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-triangle.jpg" alt="Triangle Pose - Trikonasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">TRIANGLE POSE</span>
+          <h3 class="pose-name">Trikonasana</h3>
+          <p class="pose-desc">
+            Trikonasana stretches the legs, knees, ankles, arms, and chest while expanding the lungs. It improves physical balance, digestion, and aids in relieving stress and backache.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 6: CHILD'S POSE -->
+      <article class="pose-card reverse">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-child.jpg" alt="Child's Pose - Balasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">CHILD'S POSE</span>
+          <h3 class="pose-name">Balasana</h3>
+          <p class="pose-desc">
+            A restorative resting posture that gently stretches the hips, thighs, and ankles while calming the mind. Balasana helps relieve stress, tension in the back, and promotes deep conscious breathing.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 7: BRIDGE POSE -->
+      <article class="pose-card">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-bridge.jpg" alt="Bridge Pose - Setu Bandhasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">BRIDGE POSE</span>
+          <h3 class="pose-name">Setu Bandhasana</h3>
+          <p class="pose-desc">
+            Bridge pose opens the chest, heart, and shoulders while strengthening the back, glutes, and hamstrings. It stimulates thyroid glands, improves digestion, and helps alleviate stress.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 8: LOTUS POSE -->
+      <article class="pose-card reverse">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-camel.jpg" alt="Lotus Pose - Padmasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">LOTUS POSE</span>
+          <h3 class="pose-name">Padmasana</h3>
+          <p class="pose-desc">
+            The classic cross-legged meditative posture that promotes deep mental tranquility, opens the hips, and aligns the spine. Padmasana encourages stillness and prepares the mind for pranayama.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 9: EAGLE POSE -->
+      <article class="pose-card">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-mountain.jpg" alt="Eagle Pose - Garudasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">EAGLE POSE</span>
+          <h3 class="pose-name">Garudasana</h3>
+          <p class="pose-desc">
+            Garudasana requires acute concentration and steady balance. Wrapping the arms and legs stretches the shoulders, upper back, and thighs while sharpening mental focus.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- POSE 10: CORPSE POSE -->
+      <article class="pose-card reverse">
+        <div class="pose-image-box">
+          <img src="../assets/images/yoga/yoga-savasana.jpg" alt="Corpse Pose - Savasana">
+        </div>
+        <div class="pose-content">
+          <span class="pose-tag">CORPSE POSE</span>
+          <h3 class="pose-name">Savasana</h3>
+          <p class="pose-desc">
+            The final resting pose of every yoga session. Savasana allows the body to integrate the benefits of practice, releases nervous system tension, and restores total harmony to body and mind.
+          </p>
+          <div class="pose-actions">
+            <button class="btn-start-practice">
+              <i class="fa-solid fa-play"></i> Start Practice
+            </button>
+            <button class="btn-bookmark" aria-label="Bookmark pose">
+              <i class="fa-regular fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- ===== BOTTOM TABS NAV ===== -->
+  <div class="bottom-tabs">
+    <a class="tab" href="dashboard.html">
+      <i class="fa-solid fa-house"></i> Daily
+    </a>
+    <a class="tab" href="health.html">
+      <i class="fa-solid fa-heart"></i> Health
+    </a>
+    <a class="tab" href="athletes.html">
+      <i class="fa-solid fa-users"></i> Athletes
+    </a>
+  </div>
+
+  <!-- ===== PRACTICE TIMER MODAL ===== -->
+  <div class="modal" id="practiceModal">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      <h2 id="modalPoseTitle" style="font-size: 1.5rem; font-weight:800; margin-bottom:6px;">Vrksasana</h2>
+      <p style="font-size:0.85rem; color:var(--text-medium);">Hold the pose & breathe deeply</p>
+
+      <div class="timer-circle" id="timerCircle">
+        <div class="timer-display" id="timerDisplay">1:00</div>
+        <div class="timer-subtext">Remaining</div>
+      </div>
+
+      <button class="btn-start-practice" id="toggleTimerBtn" style="margin: 10px auto 0;">
+        Start Timer
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="../js/yoga.js"></script>
+</body>
+</html>

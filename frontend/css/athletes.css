@@ -1,0 +1,881 @@
+/* ========================================
+   ZENFIT — ATHLETE PRO STYLESHEET
+   Turquoise Blue Theme (matching Nutrition)
+   ======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*{
+box-sizing:border-box;
+font-family:Inter,-apple-system,BlinkMacSystemFont,sans-serif;
+margin:0;
+padding:0;
+}
+
+
+body{
+background: #F0FAFB;
+background-image:
+    radial-gradient(circle at 10% 20%, rgba(0, 188, 212, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(38, 198, 218, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 131, 143, 0.03) 0%, transparent 60%);
+color:#0F172A;
+min-height:100vh;
+}
+
+
+
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+
+.icon-btn-hamburger {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 14px;
+  background: var(--bg-card, #FFFFFF);
+  border: 1px solid rgba(0, 188, 212, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 131, 143, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark, #0F172A);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.icon-btn-hamburger:hover {
+  background: #E0F7FA;
+  color: #00838F;
+  transform: translateY(-1px);
+}
+
+.header-title-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.header-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-dark, #0F172A);
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-medium, #64748B);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.header-right .sidebar-brand {
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.pro-pill {
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #00838F, #00BCD4);
+  color: white;
+  font-weight: 800;
+  font-size: 0.72rem;
+  box-shadow: 0 3px 10px rgba(0, 188, 212, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.athlete-page {
+  padding: 0 0 100px 0;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+
+
+.hero-card{
+
+background: #FFFFFF;
+
+border-radius:28px;
+
+padding:30px;
+
+display:flex;
+
+align-items:center;
+
+gap:30px;
+
+box-shadow:
+0 10px 30px rgba(0, 131, 143, 0.06);
+border: 1px solid rgba(0, 188, 212, 0.08);
+
+}
+
+
+
+.performance-ring{
+
+width:150px;
+height:150px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+background:
+conic-gradient(
+#00BCD4 0deg,
+#00BCD4 0deg,
+#E0F7FA 0deg
+);
+
+
+}
+
+
+.ring-inner{
+
+width:120px;
+height:120px;
+
+border-radius:50%;
+
+background:#FFFFFF;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+justify-content:center;
+
+}
+
+
+.ring-inner strong{
+
+font-size:38px;
+color:#00838F;
+
+}
+
+
+.ring-inner span{
+
+font-size:12px;
+
+color:#64748B;
+
+}
+
+
+
+
+.athlete-info h2{
+
+font-size:30px;
+font-weight:800;
+color:#0F172A;
+margin:0 0 10px;
+
+}
+
+
+
+.level-badge{
+
+display:inline-block;
+
+background: linear-gradient(135deg, #00838F, #00BCD4);
+
+color:white;
+
+padding:6px 14px;
+
+border-radius:20px;
+
+font-weight:700;
+
+font-size:13px;
+box-shadow: 0 4px 14px rgba(0, 188, 212, 0.3);
+
+}
+
+
+
+.athlete-info p{
+
+color:#64748B;
+
+}
+
+
+
+.rank-card{
+
+margin-top:20px;
+
+background:#E0F7FA;
+
+padding:15px;
+
+border-radius:16px;
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+.rank-card strong{
+font-size:24px;
+color:#00838F;
+}
+
+.rank-card span{
+color:#64748B;
+}
+
+
+
+.stats-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+
+
+.stat-card{
+
+background:#FFFFFF;
+
+padding:22px;
+
+border-radius:22px;
+
+border:1px solid rgba(0, 188, 212, 0.08);
+box-shadow: 0 10px 30px rgba(0, 131, 143, 0.06);
+
+}
+
+
+
+.stat-card span{
+
+font-size:30px;
+
+}
+
+
+.stat-card h3{
+
+margin:10px 0;
+color:#0F172A;
+font-weight:700;
+
+}
+
+
+.stat-card strong{
+
+font-size:28px;
+color:#00838F;
+
+}
+
+
+
+.stat-card p{
+
+color:#64748B;
+
+font-size:13px;
+
+}
+
+
+
+
+.panel,
+.athlete-search{
+
+background:#FFFFFF;
+
+padding:22px;
+
+border-radius:24px;
+
+margin-top:20px;
+box-shadow: 0 10px 30px rgba(0, 131, 143, 0.06);
+border: 1px solid rgba(0, 188, 212, 0.08);
+
+}
+
+
+
+.search-box{
+
+display:flex;
+
+gap:10px;
+
+}
+
+
+
+.search-box input{
+
+flex:1;
+
+padding:14px;
+
+border-radius:14px;
+
+border:1px solid rgba(0, 188, 212, 0.15);
+
+background:#F0FAFB;
+
+color:#0F172A;
+
+}
+
+.search-box input:focus{
+outline: none;
+border-color: #00BCD4;
+box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+}
+
+
+
+.search-box button{
+
+border:none;
+
+padding:0 20px;
+
+border-radius:14px;
+
+background: linear-gradient(135deg, #00838F, #00BCD4);
+
+color: white;
+
+font-weight:bold;
+cursor: pointer;
+transition: all 0.25s ease;
+
+}
+
+.search-box button:hover{
+transform: translateY(-2px);
+box-shadow: 0 4px 14px rgba(0, 188, 212, 0.35);
+}
+
+
+
+
+.filters{
+
+display:flex;
+
+gap:10px;
+
+margin-top:15px;
+
+flex-wrap:wrap;
+
+}
+
+
+.filters button{
+
+padding:10px 18px;
+
+border-radius:20px;
+
+border:1px solid rgba(0, 188, 212, 0.15);
+
+background:#F0FAFB;
+
+color:#64748B;
+cursor: pointer;
+font-weight: 600;
+transition: all 0.25s ease;
+
+}
+
+.filters button:hover{
+border-color: #00BCD4;
+color: #00838F;
+background: #E0F7FA;
+}
+
+
+.filters .active{
+
+background: linear-gradient(135deg, #00838F, #00BCD4);
+
+color:white;
+
+border-color: transparent;
+
+}
+
+
+
+
+.panel-title{
+
+display:flex;
+
+justify-content:space-between;
+align-items: center;
+
+}
+
+.panel-title h3{
+font-weight: 800;
+color: #0F172A;
+}
+
+.panel-title a,
+.panel-title span{
+color: #00838F;
+font-weight: 600;
+font-size: 13px;
+}
+
+
+
+.chart{
+
+height:180px;
+
+display:flex;
+
+align-items:end;
+
+gap:12px;
+
+margin-top:30px;
+
+}
+
+
+
+.chart div{
+
+flex:1;
+
+background:
+linear-gradient(135deg, #00BCD4, #00838F);
+
+border-radius:12px 12px 0 0;
+
+position:relative;
+
+}
+
+
+
+.chart small{
+
+position:absolute;
+
+bottom:-25px;
+
+width:100%;
+
+text-align:center;
+
+color:#64748B;
+
+}
+
+
+
+.consistency-card{
+
+margin-top:40px;
+
+background:#E0F7FA;
+
+padding:18px;
+
+border-radius:18px;
+
+display:flex;
+
+justify-content:space-between;
+align-items: center;
+
+}
+
+.consistency-card strong{
+font-size:30px;
+color:#00838F;
+}
+
+.consistency-card span,
+.consistency-card p{
+color:#64748B;
+}
+
+
+
+.ai-card{
+
+
+margin-top:20px;
+
+padding:25px;
+
+border-radius:25px;
+
+background:
+linear-gradient(135deg,#00838F,#00BCD4);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+color: white;
+
+}
+
+.ai-card h3{
+color: white;
+font-weight: 800;
+}
+
+.ai-card p{
+color: rgba(255,255,255,0.8);
+}
+
+
+
+.ai-card button,
+.subscription-card button{
+
+
+padding:14px 25px;
+
+border:none;
+
+border-radius:20px;
+
+font-weight:700;
+
+cursor:pointer;
+transition: all 0.25s ease;
+
+}
+
+.ai-card button{
+background: white;
+color: #00838F;
+}
+
+.ai-card button:hover{
+transform: translateY(-2px);
+box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+.record-card,
+.leader{
+
+display:flex;
+
+justify-content:space-between;
+align-items: center;
+
+padding:18px;
+
+background:#F0FAFB;
+
+border-radius:15px;
+
+margin-top:12px;
+border: 1px solid rgba(0, 188, 212, 0.08);
+
+}
+
+.record-card strong,
+.leader strong{
+color:#00838F;
+}
+
+.record-card span,
+.leader span{
+color:#64748B;
+}
+
+
+
+.subscription-card{
+
+
+margin-top:25px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+linear-gradient(135deg,#00838F,#26C6DA);
+
+
+color:white;
+
+}
+
+
+
+.premium-tag{
+
+font-size:13px;
+
+font-weight:bold;
+
+}
+
+
+
+.subscription-card li{
+
+margin:12px 0;
+
+}
+
+
+
+.subscription-card button{
+
+background:white;
+
+color:#00838F;
+
+width:100%;
+
+}
+
+.subscription-card button:hover{
+transform: translateY(-2px);
+box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.bottom-nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform: translateX(-50%);
+height:auto;
+background:#FFFFFF;
+border-radius: 40px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+width: fit-content;
+max-width: calc(100vw - 20px);
+padding: 5px 10px;
+border: 1px solid rgba(0, 0, 0, 0.05);
+display:flex;
+justify-content:center;
+gap: 6px;
+align-items:center;
+z-index: 1000;
+}
+
+.bottom-nav a{
+color:#64748B;
+text-decoration:none;
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 10px 22px;
+border-radius: 24px;
+font-weight: 600;
+font-size: 0.85rem;
+transition: all 0.25s ease;
+white-space: nowrap;
+}
+
+.bottom-nav a:hover:not(.active){
+background: #F1F5F9;
+color: #0F172A;
+}
+
+.bottom-nav .active{
+background: linear-gradient(135deg, #00838F, #00BCD4);
+color: white;
+box-shadow: 0 4px 16px rgba(0, 188, 212, 0.35);
+font-weight:700;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px 14px 90px;
+  }
+
+  .top-header {
+    margin-bottom: 16px;
+  }
+
+  .header-left {
+    gap: 10px;
+  }
+
+  .header-title {
+    font-size: 1.3rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .header-right .sidebar-brand {
+    display: none !important;
+  }
+
+  .icon-btn-hamburger {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 12px;
+  }
+
+  .header-icon-btn, .header-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 11px;
+  }
+
+  .athlete-page {
+    padding: 0 0 90px 0;
+  }
+
+  .hero-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .panel, .athlete-search {
+    padding: 18px 14px;
+    border-radius: 20px;
+  }
+
+  .subscription-card {
+    padding: 24px 16px;
+    border-radius: 22px;
+  }
+
+  .ai-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .main-content {
+    padding: 12px 10px 85px;
+  }
+
+  .top-header {
+    margin-bottom: 12px;
+  }
+
+  .header-title {
+    font-size: 1.12rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.72rem;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+
+  .header-right {
+    gap: 6px;
+  }
+
+  .icon-btn-hamburger {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 10px;
+  }
+
+  .header-icon-btn, .header-avatar {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 10px;
+  }
+
+  .hero-card, .panel, .athlete-search, .subscription-card, .ai-card {
+    padding: 14px 10px;
+    border-radius: 16px;
+  }
+}
