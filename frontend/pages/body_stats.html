@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-<title>
-ZENFIT — Body Profile
-</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZENFIT — Body Profile</title>
 
 <link rel="stylesheet" href="../css/body_stats.css">
+
+<!-- Font Awesome Icons -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+>
 
 </head>
 
@@ -17,12 +24,13 @@ ZENFIT — Body Profile
 
 <header class="header">
 
-<button onclick="history.back()">
-←
+<button onclick="history.back()" aria-label="Go Back">
+    <i class="fa-solid fa-arrow-left"></i>
 </button>
 
 <h1>
-Body Profile
+    <i class="fa-solid fa-user"></i>
+    Body Profile
 </h1>
 
 </header>
@@ -46,22 +54,24 @@ Body Profile
 <div class="photo-box">
 
 
-<img 
-id="profilePhoto"
-src="../assets/images/default_user.jpeg"
+<img
+    id="profilePhoto"
+    src="../assets/images/default_user.jpeg"
+    alt="Profile Photo"
 >
 
 
 <label for="photoUpload">
-Change Photo
+    <i class="fa-solid fa-camera"></i>
+    Change Photo
 </label>
 
 
-<input 
-type="file"
-id="photoUpload"
-accept="image/*"
-hidden
+<input
+    type="file"
+    id="photoUpload"
+    accept="image/*"
+    hidden
 >
 
 
@@ -72,11 +82,11 @@ hidden
 <div class="score-circle">
 
 <strong id="bmiScore">
-0
+    0
 </strong>
 
 <span>
-BMI
+    BMI
 </span>
 
 
@@ -96,15 +106,17 @@ BMI
 
 
 <h2 id="userName">
-User
+    User
 </h2>
 
 
 <p class="goal">
-🎯 Goal:
-<span id="userGoal">
---
-</span>
+    <i class="fa-solid fa-bullseye"></i>
+    Goal:
+
+    <span id="userGoal">
+        --
+    </span>
 </p>
 
 
@@ -116,11 +128,12 @@ User
 <div class="stat">
 
 <h4>
-Height
+    <i class="fa-solid fa-ruler-vertical"></i>
+    Height
 </h4>
 
 <strong id="height">
---
+    --
 </strong>
 
 </div>
@@ -130,11 +143,12 @@ Height
 <div class="stat">
 
 <h4>
-Weight
+    <i class="fa-solid fa-weight-scale"></i>
+    Weight
 </h4>
 
 <strong id="weight">
---
+    --
 </strong>
 
 </div>
@@ -144,11 +158,12 @@ Weight
 <div class="stat">
 
 <h4>
-BMI
+    <i class="fa-solid fa-calculator"></i>
+    BMI
 </h4>
 
 <strong id="bmi">
---
+    --
 </strong>
 
 </div>
@@ -158,11 +173,12 @@ BMI
 <div class="stat">
 
 <h4>
-BMR
+    <i class="fa-solid fa-fire"></i>
+    BMR
 </h4>
 
 <strong id="bmr">
---
+    --
 </strong>
 
 </div>
@@ -178,18 +194,19 @@ BMR
 
 
 <h3>
-Body Composition
+    <i class="fa-solid fa-chart-simple"></i>
+    Body Composition
 </h3>
 
 
 <div class="line">
 
 <span>
-Body Fat
+    Body Fat
 </span>
 
 <b id="bodyFat">
-0%
+    0%
 </b>
 
 
@@ -212,11 +229,11 @@ Body Fat
 
 <div class="calorie-box">
 
-
-🔥 Daily Calories Need
+    <i class="fa-solid fa-fire-flame-curved"></i>
+    Daily Calories Need
 
 <strong id="calories">
-0 kcal
+    0 kcal
 </strong>
 
 
