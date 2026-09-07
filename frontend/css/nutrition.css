@@ -2405,3 +2405,635 @@ button {
 .tip-card:nth-child(2) { animation-delay: 0.2s; }
 .tip-card:nth-child(3) { animation-delay: 0.3s; }
 .tip-card:nth-child(4) { animation-delay: 0.4s; }
+
+
+/* =========================================================
+   ZENFIT NUTRITION — PHASE 1 PREMIUM UI/UX UPGRADE
+   UI-only overrides — existing HTML/JS classes preserved
+   ========================================================= */
+
+:root {
+  --primary-turquoise: #16A34A;
+  --turquoise-dark: #15803D;
+  --turquoise-light: #DCFCE7;
+  --turquoise-accent: #22C55E;
+  --turquoise-glow: rgba(22, 163, 74, 0.14);
+  --aqua: #16A34A;
+  --coral: #F97316;
+  --bg-main: #F5F8F5;
+  --bg-card: #FFFFFF;
+  --text-dark: #14231A;
+  --text-medium: #64748B;
+  --shadow-card: 0 8px 28px rgba(20, 35, 26, 0.055);
+  --shadow-hover: 0 16px 38px rgba(20, 35, 26, 0.10);
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(34,197,94,.07), transparent 30%),
+    radial-gradient(circle at 92% 25%, rgba(22,163,74,.055), transparent 28%),
+    var(--bg-main);
+}
+
+/* Header */
+.dashboard-header {
+  padding: 16px 32px;
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid #E7EEE9;
+  box-shadow: 0 3px 18px rgba(20,35,26,.045);
+}
+
+.header-back-arrow {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: var(--turquoise-dark);
+  background: #ECFDF3;
+  transition: .25s ease;
+}
+
+.header-back-arrow:hover {
+  transform: translateX(-2px);
+  background: var(--turquoise-light);
+}
+
+.greeting {
+  letter-spacing: -0.035em;
+}
+
+.greeting-sub {
+  color: #718078;
+}
+
+/* Main rhythm */
+.main-content {
+  max-width: 1240px;
+  padding: 30px 24px 125px;
+}
+
+.practice-subtag {
+  color: var(--turquoise-dark);
+  letter-spacing: .13em;
+}
+
+.practice-title {
+  letter-spacing: -0.045em;
+}
+
+/* Top stat cards */
+.stats-grid {
+  gap: 16px;
+  margin-bottom: 38px;
+}
+
+.stat-card {
+  min-height: 126px;
+  padding: 22px 24px;
+  border: 1px solid #E7EEE9;
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.stat-card::after {
+  height: 3px;
+  background: linear-gradient(90deg, var(--turquoise-dark), var(--turquoise-accent));
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.stat-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+}
+
+.stat-icon-wrapper.turquoise,
+.stat-icon-wrapper.aqua {
+  background: #ECFDF3;
+  color: var(--turquoise-dark);
+}
+
+.stat-icon-wrapper.coral {
+  background: #FFF7ED;
+  color: #EA580C;
+}
+
+.stat-info h1 {
+  letter-spacing: -0.04em;
+}
+
+.stat-info p {
+  color: var(--turquoise-dark);
+}
+
+/* Macro panel */
+.macros-overview {
+  padding: 28px;
+  margin-bottom: 38px;
+  border: 1px solid #E5ECE7;
+  border-radius: 22px;
+  box-shadow: var(--shadow-card);
+}
+
+.macros-overview-header {
+  margin-bottom: 22px;
+}
+
+.macros-toggle-group,
+.weekly-metric-tabs {
+  background: #F1F5F2;
+  border: 1px solid #E4EBE6;
+}
+
+.macros-toggle.active,
+.weekly-metric-tab.active {
+  background: linear-gradient(135deg, #15803D, #22C55E);
+  box-shadow: 0 5px 14px rgba(22,163,74,.20);
+}
+
+.macro-ring-card {
+  background: #FBFDFC;
+  border: 1px solid #E8EFEA;
+  border-radius: 18px;
+}
+
+.macro-ring-card:hover {
+  border-color: rgba(22,163,74,.25);
+  box-shadow: 0 12px 28px rgba(22,163,74,.09);
+}
+
+.macro-ring-name {
+  letter-spacing: -.01em;
+}
+
+/* Calories panel */
+.calories-remaining-section {
+  padding: 28px;
+  margin-bottom: 38px;
+  border-radius: 22px;
+  border: 1px solid #E5ECE7;
+  box-shadow: var(--shadow-card);
+}
+
+.cal-rem-badge {
+  background: #ECFDF3;
+  color: var(--turquoise-dark);
+  border-color: #BBF7D0;
+}
+
+.cal-progress-track {
+  background: #E7F5EA;
+}
+
+.cal-progress-fill {
+  background: linear-gradient(90deg, #15803D, #16A34A, #22C55E);
+}
+
+.cal-macro-mini {
+  background: #FBFDFC;
+  border-color: #E8EFEA;
+}
+
+/* Meal section */
+.meal-plan-header {
+  margin-bottom: 26px;
+}
+
+.meal-plan-actions {
+  margin-top: 20px;
+}
+
+.btn-quick-add {
+  background: linear-gradient(135deg, #15803D, #22C55E);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 6px 16px rgba(22,163,74,.18);
+}
+
+.btn-quick-add:hover {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #166534, #16A34A);
+}
+
+.btn-customize-plan {
+  background: #FFFFFF;
+}
+
+.btn-customize-plan:hover {
+  background: #ECFDF3;
+  border-color: #86EFAC;
+  color: #166534;
+}
+
+/* Meal cards */
+.poses-list {
+  gap: 18px;
+}
+
+.pose-card {
+  padding: 22px;
+  gap: 26px;
+  border-radius: 22px;
+  border: 1px solid #E5ECE7;
+  box-shadow: var(--shadow-card);
+}
+
+.pose-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #D7E7DB;
+}
+
+.pose-image-box.meal-image-box {
+  flex-basis: 190px;
+  width: 190px;
+  height: 190px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ECFDF3, #DCFCE7, #F0FDF4);
+}
+
+.meal-time-badge {
+  color: #166534;
+  border: 1px solid rgba(22,163,74,.10);
+}
+
+.pose-tag {
+  color: #15803D;
+}
+
+.pose-name {
+  font-size: 1.55rem;
+  letter-spacing: -.035em;
+}
+
+.pose-desc {
+  line-height: 1.6;
+}
+
+.meal-macros-row {
+  gap: 8px;
+  margin-bottom: 17px;
+}
+
+.meal-macro {
+  background: #F8FBF9;
+  border-color: #E3ECE5;
+}
+
+.meal-macro:hover {
+  border-color: #86EFAC;
+  background: #ECFDF3;
+  color: #166534;
+}
+
+.btn-start-practice,
+.btn-add-meal {
+  background: linear-gradient(135deg, #15803D, #22C55E);
+  box-shadow: 0 5px 15px rgba(22,163,74,.20);
+}
+
+.btn-start-practice:hover,
+.btn-add-meal:hover {
+  box-shadow: 0 8px 20px rgba(22,163,74,.28);
+}
+
+.btn-view-details-meal {
+  background: #F0FDF4;
+  color: #166534;
+  border-color: #BBF7D0;
+}
+
+.btn-view-details-meal:hover {
+  background: #DCFCE7;
+  color: #14532D;
+}
+
+.btn-bookmark:hover,
+.btn-bookmark.active {
+  border-color: #86EFAC;
+  color: #15803D;
+  background: #ECFDF3;
+}
+
+/* Weekly analytics */
+.weekly-chart-section {
+  padding: 28px;
+  margin-bottom: 38px;
+  border-radius: 22px;
+  border: 1px solid #E5ECE7;
+  box-shadow: var(--shadow-card);
+}
+
+.weekly-summary-card {
+  background: #FBFDFC;
+  border-color: #E8EFEA;
+  border-radius: 17px;
+}
+
+.weekly-summary-card:hover {
+  box-shadow: 0 10px 22px rgba(20,35,26,.07);
+}
+
+.summary-icon {
+  background: #ECFDF3;
+  color: #15803D;
+}
+
+.summary-sub {
+  color: #15803D;
+}
+
+.consumed-bar,
+.bar-group.active .consumed-bar {
+  background: linear-gradient(180deg, #22C55E, #15803D);
+}
+
+.bar-group.active .consumed-bar {
+  box-shadow: 0 5px 15px rgba(22,163,74,.20);
+}
+
+.bar-group.active .bar-label {
+  color: #15803D;
+}
+
+/* Knowledge section */
+.tips-section {
+  margin-bottom: 32px;
+}
+
+.tips-title {
+  letter-spacing: -.035em;
+}
+
+.tips-grid {
+  gap: 16px;
+}
+
+.tip-card {
+  padding: 24px 20px;
+  border-radius: 20px;
+  border: 1px solid #E5ECE7;
+  box-shadow: var(--shadow-card);
+}
+
+.tip-card::before {
+  background: linear-gradient(90deg, #15803D, #22C55E);
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+  border-color: #D7E7DB;
+  box-shadow: var(--shadow-hover);
+}
+
+.tip-icon {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 14px;
+  border-radius: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ECFDF3;
+}
+
+.card-explore-btn {
+  color: #15803D;
+}
+
+/* Modals */
+.modal {
+  background: rgba(20,35,26,.48);
+}
+
+.modal-card {
+  border: 1px solid #E5ECE7;
+  box-shadow: 0 24px 70px rgba(20,35,26,.18);
+}
+
+.modal-close:hover {
+  background: #FEE2E2;
+}
+
+.details-emoji,
+.knowledge-emoji {
+  background: #ECFDF3;
+}
+
+.macro-box,
+.knowledge-item,
+.swap-item,
+.success-stat {
+  background: #FBFDFC;
+  border-color: #E3ECE5;
+}
+
+.macro-box .m-val,
+.details-section h4 i,
+.knowledge-item .nutrient-badges,
+.nutrient-badge {
+  color: #15803D;
+}
+
+.nutrient-badge {
+  background: #ECFDF3;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.13);
+}
+
+.btn-grocery,
+.btn-choose-swap {
+  background: #ECFDF3;
+  color: #166534;
+}
+
+.btn-grocery:hover,
+.btn-choose-swap:hover {
+  background: #22C55E;
+  color: #FFFFFF;
+}
+
+/* Bottom navigation */
+.bottom-tabs {
+  border: 1px solid #E4EBE6;
+  box-shadow: 0 12px 30px rgba(20,35,26,.10);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #15803D, #22C55E);
+  box-shadow: 0 5px 16px rgba(22,163,74,.24);
+}
+
+/* Accessibility */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(34,197,94,.28);
+  outline-offset: 2px;
+}
+
+/* Responsive polish */
+@media (max-width: 900px) {
+  .dashboard-header {
+    padding: 14px 18px;
+  }
+
+  .main-content {
+    padding: 24px 18px 115px;
+  }
+
+  .stat-card {
+    min-height: 108px;
+  }
+
+  .macros-overview,
+  .calories-remaining-section,
+  .weekly-chart-section {
+    padding: 22px;
+  }
+
+  .pose-card,
+  .pose-card.reverse {
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .pose-image-box.meal-image-box {
+    height: 185px;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    padding: 20px 12px 105px;
+  }
+
+  .greeting {
+    font-size: 1.15rem;
+  }
+
+  .greeting-sub {
+    font-size: .78rem;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+
+  .sidebar-brand-group {
+    display: none !important;
+  }
+
+  .macros-overview,
+  .calories-remaining-section,
+  .weekly-chart-section {
+    padding: 17px 14px;
+    border-radius: 18px;
+  }
+
+  .weekly-chart-header {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .weekly-metric-tabs {
+    flex-wrap: wrap;
+  }
+
+  .weekly-metric-tab {
+    padding: 6px 10px;
+  }
+
+  .pose-name {
+    font-size: 1.3rem;
+  }
+
+  .pose-actions {
+    flex-wrap: wrap;
+  }
+
+  .pose-actions > button {
+    min-height: 42px;
+  }
+
+  .modal-card.large-modal {
+    width: calc(100% - 24px);
+    padding: 22px 16px;
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .dashboard-header {
+    padding: 11px 12px;
+  }
+
+  .header-back-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .header-icon-btn,
+  .header-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .practice-title {
+    font-size: 1.45rem;
+  }
+
+  .macros-grid {
+    gap: 7px;
+  }
+
+  .macro-ring-card {
+    padding: 14px 7px;
+  }
+
+  .ring-container {
+    width: 68px;
+    height: 68px;
+  }
+
+  .weekly-summary-grid {
+    gap: 8px;
+  }
+
+  .weekly-summary-card {
+    padding: 13px 10px;
+  }
+
+  .meal-plan-actions {
+    flex-direction: column;
+  }
+
+  .meal-plan-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .bottom-tabs {
+    bottom: 10px;
+    width: calc(100% - 18px);
+  }
+
+  .tab {
+    padding: 8px 12px;
+    font-size: .78rem;
+  }
+}
