@@ -186,6 +186,111 @@ let mealsState = [
   }
 ];
 
+// PHASE 2 — EXPANDED MEAL LIBRARY
+// Additional meal options for different goals and training times.
+mealsState.push(
+  {
+    id: 6, tag: 'PRE-WORKOUT', name: 'Banana Peanut Butter Toast', time: '6:00 AM',
+    emoji: '🍌', image: '', desc: 'Quick-digesting carbs with healthy fats for steady pre-workout energy.',
+    calories: 310, protein: 10, carbs: 45, fats: 11, fiber: 5, prepTime: '5 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['1 Banana', '2 Slices Whole-Grain Toast', '1 tbsp Peanut Butter', 'Cinnamon'],
+    recipe: ['Toast the bread.', 'Spread peanut butter over the toast.', 'Top with sliced banana and cinnamon.'],
+    substitutions: 'Use almond butter or sunflower seed butter instead of peanut butter.',
+    allergens: ['Peanuts', 'Gluten']
+  },
+  {
+    id: 7, tag: 'POST-WORKOUT', name: 'Protein Banana Recovery Bowl', time: '9:00 AM',
+    emoji: '🥣', image: '', desc: 'Protein-rich yogurt bowl with banana, oats, berries and seeds to support recovery.',
+    calories: 390, protein: 30, carbs: 48, fats: 9, fiber: 7, prepTime: '7 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['1 cup Greek Yogurt', '1 Banana', '1/3 cup Oats', '1/2 cup Berries', '1 tsp Chia Seeds'],
+    recipe: ['Add Greek yogurt to a bowl.', 'Top with oats, banana, berries and chia seeds.', 'Serve chilled.'],
+    substitutions: 'Use soy yogurt and plant protein for a dairy-free option.',
+    allergens: ['Dairy']
+  },
+  {
+    id: 8, tag: 'HIGH-PROTEIN', name: 'Paneer Power Bowl', time: '12:30 PM',
+    emoji: '🧀', image: '', desc: 'Indian-style paneer bowl with brown rice, vegetables and cooling curd.',
+    calories: 560, protein: 32, carbs: 54, fats: 22, fiber: 8, prepTime: '20 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['120g Paneer', '3/4 cup Brown Rice', '1 cup Mixed Vegetables', '1/2 cup Curd', 'Herbs & Spices'],
+    recipe: ['Grill or lightly sauté paneer with spices.', 'Add cooked brown rice and vegetables to a bowl.', 'Serve with curd.'],
+    substitutions: 'Replace paneer with tofu for a lighter plant-based option.',
+    allergens: ['Dairy']
+  },
+  {
+    id: 9, tag: 'WEIGHT GAIN', name: 'Peanut Butter Oat Smoothie', time: '5:00 PM',
+    emoji: '🥜', image: '', desc: 'Calorie-dense smoothie designed for healthy weight gain with protein and complex carbs.',
+    calories: 520, protein: 24, carbs: 62, fats: 20, fiber: 8, prepTime: '5 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['1 Banana', '1/2 cup Oats', '2 tbsp Peanut Butter', '1 cup Milk', '2 Dates'],
+    recipe: ['Add all ingredients to a blender.', 'Blend until smooth and creamy.', 'Serve immediately.'],
+    substitutions: 'Use soy milk and almond butter if preferred.',
+    allergens: ['Peanuts', 'Dairy']
+  },
+  {
+    id: 10, tag: 'SNACK', name: 'Greek Yogurt Berry Crunch', time: '6:00 PM',
+    emoji: '🫐', image: '', desc: 'High-protein yogurt snack with berries, walnuts and a little honey.',
+    calories: 290, protein: 20, carbs: 27, fats: 11, fiber: 5, prepTime: '3 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['1 cup Greek Yogurt', '1/2 cup Mixed Berries', '15g Walnuts', '1 tsp Honey'],
+    recipe: ['Add yogurt to a bowl.', 'Top with berries and walnuts.', 'Finish with a small drizzle of honey.'],
+    substitutions: 'Use curd or soy yogurt as an alternative.',
+    allergens: ['Dairy', 'Tree Nuts']
+  },
+  {
+    id: 11, tag: 'DINNER', name: 'Tofu & Quinoa Veggie Bowl', time: '8:00 PM',
+    emoji: '🍲', image: '', desc: 'Balanced vegetarian dinner combining complete plant protein, quinoa and colorful vegetables.',
+    calories: 500, protein: 29, carbs: 58, fats: 17, fiber: 10, prepTime: '20 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['150g Firm Tofu', '3/4 cup Cooked Quinoa', '1 cup Mixed Vegetables', '1 tsp Olive Oil', 'Lemon & Herbs'],
+    recipe: ['Pan-sear seasoned tofu until golden.', 'Add cooked quinoa and vegetables to a bowl.', 'Finish with lemon and herbs.'],
+    substitutions: 'Use paneer or chickpeas instead of tofu.',
+    allergens: ['Soy']
+  },
+  {
+    id: 12, tag: 'BREAKFAST', name: 'Paneer Besan Chilla', time: '8:00 AM',
+    emoji: '🥞', image: '', desc: 'Protein-focused Indian breakfast made with besan, paneer and vegetables.',
+    calories: 430, protein: 25, carbs: 42, fats: 17, fiber: 7, prepTime: '15 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['1/2 cup Besan', '80g Paneer', 'Onion & Capsicum', 'Coriander', 'Spices'],
+    recipe: ['Make a smooth besan batter with water and spices.', 'Add chopped vegetables and cook as a chilla.', 'Fill with crumbled paneer and serve hot.'],
+    substitutions: 'Use tofu instead of paneer.',
+    allergens: ['Dairy']
+  },
+  {
+    id: 13, tag: 'POST-WORKOUT', name: 'Soy Protein Rice Bowl', time: '7:00 PM',
+    emoji: '🍚', image: '', desc: 'Plant-protein recovery meal with soy chunks, rice and vegetables.',
+    calories: 510, protein: 34, carbs: 68, fats: 10, fiber: 9, prepTime: '20 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['50g Dry Soy Chunks', '1 cup Cooked Rice', '1 cup Vegetables', '1 tsp Olive Oil', 'Spices'],
+    recipe: ['Soak and cook soy chunks.', 'Sauté vegetables and spices.', 'Mix soy chunks with rice and vegetables and serve warm.'],
+    substitutions: 'Use tofu, lentils or chickpeas.',
+    allergens: ['Soy']
+  },
+  {
+    id: 14, tag: 'WEIGHT GAIN', name: 'Dates Almond Energy Bowl', time: '4:30 PM',
+    emoji: '🌰', image: '', desc: 'Energy-dense snack combining dates, almonds, oats and yogurt.',
+    calories: 450, protein: 16, carbs: 55, fats: 20, fiber: 8, prepTime: '5 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['4 Dates', '25g Almonds', '1/3 cup Oats', '3/4 cup Curd', '1 tsp Chia Seeds'],
+    recipe: ['Add curd and oats to a bowl.', 'Top with chopped dates, almonds and chia seeds.', 'Mix and enjoy.'],
+    substitutions: 'Use walnuts or pumpkin seeds instead of almonds.',
+    allergens: ['Dairy', 'Tree Nuts']
+  },
+  {
+    id: 15, tag: 'SNACK', name: 'Roasted Chickpea Crunch', time: '11:00 AM',
+    emoji: '🫘', image: '', desc: 'Fiber-rich crunchy snack with plant protein and slow-digesting carbohydrates.',
+    calories: 240, protein: 12, carbs: 35, fats: 6, fiber: 9, prepTime: '25 mins',
+    logged: false, bookmarked: false,
+    ingredients: ['1 cup Cooked Chickpeas', '1 tsp Olive Oil', 'Cumin', 'Paprika', 'Salt'],
+    recipe: ['Dry the chickpeas thoroughly.', 'Toss with oil and spices.', 'Roast until crisp and serve.'],
+    substitutions: 'Use roasted soy nuts for a higher-protein alternative.',
+    allergens: ['None']
+  }
+);
+
 // SWAP MEAL ALTERNATIVES
 const SWAP_DATA = {
   BREAKFAST: [
@@ -214,6 +319,36 @@ const SWAP_DATA = {
     { name: 'Baked Cod with Cauliflower Mash', emoji: '🐟', calories: 480, protein: 36, carbs: 38, fats: 12 }
   ]
 };
+
+
+// PHASE 2 — EXTRA SWAP OPTIONS
+Object.assign(SWAP_DATA, {
+  'PRE-WORKOUT': [
+    { name: 'Banana Oat Energy Toast', emoji: '🍌', calories: 300, protein: 9, carbs: 48, fats: 9 },
+    { name: 'Dates & Yogurt Bowl', emoji: '🥣', calories: 280, protein: 15, carbs: 42, fats: 7 },
+    { name: 'Oat Banana Smoothie', emoji: '🥤', calories: 320, protein: 12, carbs: 52, fats: 8 }
+  ],
+  'POST-WORKOUT': [
+    { name: 'Paneer Rice Recovery Bowl', emoji: '🍚', calories: 500, protein: 30, carbs: 58, fats: 17 },
+    { name: 'Soy Chunk Power Bowl', emoji: '🥗', calories: 480, protein: 32, carbs: 62, fats: 10 },
+    { name: 'Greek Yogurt Protein Bowl', emoji: '🫐', calories: 360, protein: 28, carbs: 42, fats: 8 }
+  ],
+  'HIGH-PROTEIN': [
+    { name: 'Paneer Tikka Grain Bowl', emoji: '🧀', calories: 540, protein: 34, carbs: 48, fats: 22 },
+    { name: 'Tofu Quinoa Bowl', emoji: '🍲', calories: 500, protein: 29, carbs: 58, fats: 17 },
+    { name: 'Lentil Paneer Salad', emoji: '🥗', calories: 470, protein: 31, carbs: 45, fats: 16 }
+  ],
+  'WEIGHT GAIN': [
+    { name: 'Banana Peanut Butter Shake', emoji: '🥤', calories: 520, protein: 20, carbs: 65, fats: 20 },
+    { name: 'Dates Almond Oat Bowl', emoji: '🌰', calories: 450, protein: 16, carbs: 55, fats: 20 },
+    { name: 'Paneer Paratha Bowl', emoji: '🫓', calories: 580, protein: 27, carbs: 65, fats: 23 }
+  ],
+  'SNACK': [
+    { name: 'Roasted Chickpeas', emoji: '🫘', calories: 240, protein: 12, carbs: 35, fats: 6 },
+    { name: 'Fruit & Nut Yogurt', emoji: '🍓', calories: 290, protein: 18, carbs: 32, fats: 10 },
+    { name: 'Peanut Butter Banana Bites', emoji: '🍌', calories: 260, protein: 8, carbs: 30, fats: 13 }
+  ]
+});
 
 // NUTRITION KNOWLEDGE DATA
 const KNOWLEDGE_DATA = {
@@ -302,6 +437,87 @@ const KNOWLEDGE_DATA = {
     ]
   }
 };
+
+
+// PHASE 2 — EXPANDED NUTRITION KNOWLEDGE
+Object.assign(KNOWLEDGE_DATA, {
+  vitaminsMinerals: {
+    emoji: '💊',
+    title: 'Vitamins & Minerals',
+    items: [
+      { name: 'Iron', desc: 'Supports oxygen transport and normal energy metabolism. Plant sources include lentils, spinach, beans and fortified foods.', badges: ['Iron', 'Energy', 'Blood Health'] },
+      { name: 'Calcium', desc: 'Important for bones, teeth and normal muscle function. Dairy, curd, paneer, tofu and fortified foods are useful sources.', badges: ['Calcium', 'Bones', 'Muscle'] },
+      { name: 'Vitamin B12', desc: 'Helps maintain healthy blood cells and supports normal nervous-system function. Vegetarians may need fortified foods or professional guidance.', badges: ['B12', 'Nervous System', 'Blood Health'] }
+    ]
+  },
+  hydration: {
+    emoji: '💧',
+    title: 'Hydration & Electrolytes',
+    items: [
+      { name: 'Daily Hydration', desc: 'Drink regularly throughout the day and increase fluids around exercise, heat and heavy sweating.', badges: ['Water', 'Hydration', 'Performance'] },
+      { name: 'Electrolyte Balance', desc: 'Sodium, potassium and magnesium help regulate fluid balance and normal muscle and nerve function.', badges: ['Sodium', 'Potassium', 'Magnesium'] },
+      { name: 'Workout Hydration', desc: 'For most everyday workouts, water is sufficient. Longer or very sweaty sessions may require additional electrolytes.', badges: ['Exercise', 'Fluids', 'Recovery'] }
+    ]
+  },
+  workoutNutrition: {
+    emoji: '🏋️',
+    title: 'Pre & Post-Workout Nutrition',
+    items: [
+      { name: 'Pre-Workout Fuel', desc: 'A meal or snack containing carbohydrates and some protein can provide useful training fuel. Choose foods that are easy for you to digest.', badges: ['Carbs', 'Energy', 'Pre-Workout'] },
+      { name: 'Post-Workout Protein', desc: 'Include a quality protein source after training as part of your overall daily protein intake to support muscle repair.', badges: ['Protein', 'Recovery', 'Muscle'] },
+      { name: 'Recovery Carbs', desc: 'Carbohydrates help replenish glycogen after demanding training, especially when another workout is coming soon.', badges: ['Carbs', 'Glycogen', 'Recovery'] }
+    ]
+  },
+  gutHealth: {
+    emoji: '🦠',
+    title: 'Gut Health',
+    items: [
+      { name: 'Fiber Diversity', desc: 'Vegetables, fruits, legumes, whole grains, nuts and seeds provide different fibers that support a diverse gut microbiome.', badges: ['Fiber', 'Microbiome', 'Plants'] },
+      { name: 'Fermented Foods', desc: 'Curd and other fermented foods can add beneficial microorganisms to the diet while also providing useful nutrients.', badges: ['Probiotics', 'Curd', 'Gut Health'] },
+      { name: 'Build Fiber Gradually', desc: 'If your current diet is low in fiber, increase it gradually and drink enough fluids to support comfortable digestion.', badges: ['Fiber', 'Digestion', 'Hydration'] }
+    ]
+  },
+  muscleBuilding: {
+    emoji: '💪',
+    title: 'Muscle Building Nutrition',
+    items: [
+      { name: 'Protein Distribution', desc: 'Spread protein-containing foods across meals instead of relying on a single large serving.', badges: ['Protein', 'Muscle', 'Meals'] },
+      { name: 'Calorie Surplus', desc: 'For healthy weight gain, a modest calorie surplus combined with resistance training can support gradual progress.', badges: ['Calories', 'Weight Gain', 'Strength'] },
+      { name: 'Whole-Food Foundation', desc: 'Build most meals around protein, whole-food carbohydrates, vegetables or fruit and healthy fats.', badges: ['Whole Foods', 'Balanced Diet', 'Recovery'] }
+    ]
+  },
+  weightManagement: {
+    emoji: '⚖️',
+    title: 'Balanced Weight Management',
+    items: [
+      { name: 'Calorie Awareness', desc: 'Your overall calorie intake matters for weight change. Use your personal target as a guide rather than chasing extreme restriction.', badges: ['Calories', 'Balance', 'Goals'] },
+      { name: 'Protein & Fiber', desc: 'Protein and fiber-rich foods can make meals more satisfying and help support a balanced eating pattern.', badges: ['Protein', 'Fiber', 'Satiety'] },
+      { name: 'Consistency Wins', desc: 'Sustainable eating habits and regular activity are generally more useful than short-term extreme diets.', badges: ['Consistency', 'Habits', 'Activity'] }
+    ]
+  }
+});
+
+
+
+// PHASE 2 — SUPERFOOD LIBRARY
+const SUPERFOODS_DATA = [
+  { name: 'Chia Seeds', emoji: '🌱', nutrients: 'Fiber, ALA Omega-3, Calcium', benefit: 'Supports fiber intake, heart health and digestive regularity.', use: 'Add to oats, curd, smoothies or chia pudding.' },
+  { name: 'Flax Seeds', emoji: '🌾', nutrients: 'ALA Omega-3, Fiber, Lignans', benefit: 'A nutrient-dense seed that adds fiber and healthy fats.', use: 'Use ground flax in oats, smoothies or yogurt.' },
+  { name: 'Pumpkin Seeds', emoji: '🎃', nutrients: 'Magnesium, Zinc, Protein', benefit: 'Provides protein, minerals and healthy fats.', use: 'Sprinkle over salads, oats or yogurt.' },
+  { name: 'Almonds', emoji: '🥜', nutrients: 'Vitamin E, Magnesium, Healthy Fats', benefit: 'Provides vitamin E, minerals and energy-dense healthy fats.', use: 'Eat as a snack or add to oats and smoothies.' },
+  { name: 'Walnuts', emoji: '🌰', nutrients: 'ALA Omega-3, Copper, Healthy Fats', benefit: 'A convenient source of plant-based omega-3 ALA and healthy fats.', use: 'Add to yogurt, oatmeal or salads.' },
+  { name: 'Oats', emoji: '🌾', nutrients: 'Beta-Glucan, Fiber, Manganese', benefit: 'Provides complex carbohydrates and soluble fiber for a satisfying meal.', use: 'Use for breakfast bowls, overnight oats or smoothies.' },
+  { name: 'Quinoa', emoji: '🍚', nutrients: 'Protein, Fiber, Magnesium', benefit: 'A versatile whole grain with useful protein and fiber.', use: 'Use as a rice alternative in bowls and salads.' },
+  { name: 'Paneer', emoji: '🧀', nutrients: 'Protein, Calcium, Fat', benefit: 'A convenient vegetarian protein and calcium source.', use: 'Add to curries, wraps, bowls or grilled dishes.' },
+  { name: 'Soy', emoji: '🫘', nutrients: 'Protein, Iron, Fiber', benefit: 'Provides high-quality plant protein for vegetarian meals.', use: 'Use tofu, soy chunks, edamame or soy milk.' },
+  { name: 'Sweet Potato', emoji: '🍠', nutrients: 'Carbohydrates, Potassium, Beta-Carotene', benefit: 'Provides carbohydrate fuel and beta-carotene.', use: 'Roast, steam or add to grain bowls.' },
+  { name: 'Banana', emoji: '🍌', nutrients: 'Carbohydrates, Potassium, Vitamin B6', benefit: 'A convenient carbohydrate-rich fruit for snacks and workouts.', use: 'Eat plain or blend into smoothies and oats.' },
+  { name: 'Dates', emoji: '🌴', nutrients: 'Carbohydrates, Fiber, Potassium', benefit: 'A naturally sweet, portable energy source.', use: 'Pair with nuts or add to smoothies and energy bites.' },
+  { name: 'Spinach', emoji: '🥬', nutrients: 'Iron, Folate, Vitamin K', benefit: 'Adds leafy-green micronutrients and fiber to meals.', use: 'Add to chilla, smoothies, curries or salads.' },
+  { name: 'Berries', emoji: '🫐', nutrients: 'Vitamin C, Fiber, Polyphenols', benefit: 'Provides fiber and antioxidant-rich plant compounds.', use: 'Add fresh or frozen berries to oats, yogurt or smoothies.' },
+  { name: 'Avocado', emoji: '🥑', nutrients: 'Monounsaturated Fat, Fiber, Potassium', benefit: 'Provides healthy fats and fiber for balanced meals.', use: 'Add to toast, salads, wraps or bowls.' },
+  { name: 'Greek Yogurt', emoji: '🥛', nutrients: 'Protein, Calcium, Probiotics', benefit: 'Convenient high-protein food that can complement snacks and breakfasts.', use: 'Pair with fruit, oats, seeds or nuts.' }
+];
 
 // WEEKLY METRIC DATA
 const WEEKLY_METRIC_DATA = {
