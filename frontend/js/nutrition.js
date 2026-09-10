@@ -191,7 +191,7 @@ let mealsState = [
 mealsState.push(
   {
     id: 6, tag: 'PRE-WORKOUT', name: 'Banana Peanut Butter Toast', time: '6:00 AM',
-    emoji: '🍌', image:"D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Banana Peanut Butter Toast.png", desc: 'Quick-digesting carbs with healthy fats for steady pre-workout energy.',
+    emoji: '🍌', image:"../assets/images/nutrition/Banana Peanut Butter Toast.png", desc: 'Quick-digesting carbs with healthy fats for steady pre-workout energy.',
     calories: 310, protein: 10, carbs: 45, fats: 11, fiber: 5, prepTime: '5 mins',
     logged: false, bookmarked: false,
     ingredients: ['1 Banana', '2 Slices Whole-Grain Toast', '1 tbsp Peanut Butter', 'Cinnamon'],
@@ -211,7 +211,7 @@ mealsState.push(
   },
   {
     id: 8, tag: 'HIGH-PROTEIN', name: 'Paneer Power Bowl', time: '12:30 PM',
-    emoji: '🧀', image:"D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Paneer Power Bowl.png", desc: 'Indian-style paneer bowl with brown rice, vegetables and cooling curd.',
+    emoji: '🧀', image:'../assets/images/nutrition/Paneer Power Bowl.png', desc: 'Indian-style paneer bowl with brown rice, vegetables and cooling curd.',
     calories: 560, protein: 32, carbs: 54, fats: 22, fiber: 8, prepTime: '20 mins',
     logged: false, bookmarked: false,
     ingredients: ['120g Paneer', '3/4 cup Brown Rice', '1 cup Mixed Vegetables', '1/2 cup Curd', 'Herbs & Spices'],
@@ -221,7 +221,7 @@ mealsState.push(
   },
   {
     id: 9, tag: 'WEIGHT GAIN', name: 'Peanut Butter Oat Smoothie', time: '5:00 PM',
-    emoji: '🥜', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Peanut Butter Oat Smoothie.png", desc: 'Calorie-dense smoothie designed for healthy weight gain with protein and complex carbs.',
+    emoji: '🥜', image:'../assets/images/nutrition/Peanut Butter Oat Smoothie.png', desc: 'Calorie-dense smoothie designed for healthy weight gain with protein and complex carbs.',
     calories: 520, protein: 24, carbs: 62, fats: 20, fiber: 8, prepTime: '5 mins',
     logged: false, bookmarked: false,
     ingredients: ['1 Banana', '1/2 cup Oats', '2 tbsp Peanut Butter', '1 cup Milk', '2 Dates'],
@@ -231,7 +231,7 @@ mealsState.push(
   },
   {
     id: 10, tag: 'SNACK', name: 'Greek Yogurt Berry Crunch', time: '6:00 PM',
-    emoji: '🫐', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Greek Yogurt Berry Crunch.png", desc: 'High-protein yogurt snack with berries, walnuts and a little honey.',
+    emoji: '🫐', image: '../assets/images/nutrition/Greek Yogurt Berry Crunch.png', desc: 'High-protein yogurt snack with berries, walnuts and a little honey.',
     calories: 290, protein: 20, carbs: 27, fats: 11, fiber: 5, prepTime: '3 mins',
     logged: false, bookmarked: false,
     ingredients: ['1 cup Greek Yogurt', '1/2 cup Mixed Berries', '15g Walnuts', '1 tsp Honey'],
@@ -241,7 +241,7 @@ mealsState.push(
   },
   {
     id: 11, tag: 'DINNER', name: 'Tofu & Quinoa Veggie Bowl', time: '8:00 PM',
-    emoji: '🍲', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Tofu & Quinoa Veggie.png", desc: 'Balanced vegetarian dinner combining complete plant protein, quinoa and colorful vegetables.',
+    emoji: '🍲', image:'../assets/images/nutrition/Tofu & Quinoa Veggie Bowl.png', desc: 'Balanced vegetarian dinner combining complete plant protein, quinoa and colorful vegetables.',
     calories: 500, protein: 29, carbs: 58, fats: 17, fiber: 10, prepTime: '20 mins',
     logged: false, bookmarked: false,
     ingredients: ['150g Firm Tofu', '3/4 cup Cooked Quinoa', '1 cup Mixed Vegetables', '1 tsp Olive Oil', 'Lemon & Herbs'],
@@ -251,7 +251,7 @@ mealsState.push(
   },
   {
     id: 12, tag: 'BREAKFAST', name: 'Paneer Besan Chilla', time: '8:00 AM',
-    emoji: '🥞', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Paneer Besan Chilla.png", desc: 'Protein-focused Indian breakfast made with besan, paneer and vegetables.',
+    emoji: '🥞', image:'../assets/images/nutrition/Paneer Besan Chilla.png', desc: 'Protein-focused Indian breakfast made with besan, paneer and vegetables.',
     calories: 430, protein: 25, carbs: 42, fats: 17, fiber: 7, prepTime: '15 mins',
     logged: false, bookmarked: false,
     ingredients: ['1/2 cup Besan', '80g Paneer', 'Onion & Capsicum', 'Coriander', 'Spices'],
@@ -261,7 +261,7 @@ mealsState.push(
   },
   {
     id: 13, tag: 'POST-WORKOUT', name: 'Soy Protein Rice Bowl', time: '7:00 PM',
-    emoji: '🍚', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Soy Protein Rice Bowl.png", desc: 'Plant-protein recovery meal with soy chunks, rice and vegetables.',
+    emoji: '🍚', image: '../assets/images/nutrition/Soy Protein Rice Bowl.png', desc: 'Plant-protein recovery meal with soy chunks, rice and vegetables.',
     calories: 510, protein: 34, carbs: 68, fats: 10, fiber: 9, prepTime: '20 mins',
     logged: false, bookmarked: false,
     ingredients: ['50g Dry Soy Chunks', '1 cup Cooked Rice', '1 cup Vegetables', '1 tsp Olive Oil', 'Spices'],
@@ -271,7 +271,7 @@ mealsState.push(
   },
   {
     id: 14, tag: 'WEIGHT GAIN', name: 'Dates Almond Energy Bowl', time: '4:30 PM',
-    emoji: '🌰', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Dates Almond Energy Bowl.png", desc: 'Energy-dense snack combining dates, almonds, oats and yogurt.',
+    emoji: '🌰', image: '../assets/images/nutrition/Dates Almond Energy Bowl.png', desc: 'Energy-dense snack combining dates, almonds, oats and yogurt.',
     calories: 450, protein: 16, carbs: 55, fats: 20, fiber: 8, prepTime: '5 mins',
     logged: false, bookmarked: false,
     ingredients: ['4 Dates', '25g Almonds', '1/3 cup Oats', '3/4 cup Curd', '1 tsp Chia Seeds'],
@@ -281,7 +281,7 @@ mealsState.push(
   },
   {
     id: 15, tag: 'SNACK', name: 'Roasted Chickpea Crunch', time: '11:00 AM',
-    emoji: '🫘', image: "D:\zenfit_backup\Tracking\frontend\assets\images\nutrition\Roasted Chickpea Crunch.png", desc: 'Fiber-rich crunchy snack with plant protein and slow-digesting carbohydrates.',
+    emoji: '🫘', image: '../assets/images/nutrition/Roasted Chickpea Crunch.png', desc: 'Fiber-rich crunchy snack with plant protein and slow-digesting carbohydrates.',
     calories: 240, protein: 12, carbs: 35, fats: 6, fiber: 9, prepTime: '25 mins',
     logged: false, bookmarked: false,
     ingredients: ['1 cup Cooked Chickpeas', '1 tsp Olive Oil', 'Cumin', 'Paprika', 'Salt'],
