@@ -191,7 +191,7 @@ let mealsState = [
 mealsState.push(
   {
     id: 6, tag: 'PRE-WORKOUT', name: 'Banana Peanut Butter Toast', time: '6:00 AM',
-    emoji: '🍌', image:"../assets/images/nutrition/banana-peanut-butter-toast.png", desc: 'Quick-digesting carbs with healthy fats for steady pre-workout energy.',
+    emoji: '🍌', image:"../assets/images/nutrition/banana-peanut-toast.png", desc: 'Quick-digesting carbs with healthy fats for steady pre-workout energy.',
     calories: 310, protein: 10, carbs: 45, fats: 11, fiber: 5, prepTime: '5 mins',
     logged: false, bookmarked: false,
     ingredients: ['1 Banana', '2 Slices Whole-Grain Toast', '1 tbsp Peanut Butter', 'Cinnamon'],
@@ -201,7 +201,7 @@ mealsState.push(
   },
   {
     id: 7, tag: 'POST-WORKOUT', name: 'Protein Banana Recovery Bowl', time: '9:00 AM',
-    emoji: '🥣', image: "../assets/images/nutrition/protein-banana.png", desc: 'Protein-rich yogurt bowl with banana, oats, berries and seeds to support recovery.',
+    emoji: '🥣', image: "../assets/images/nutrition/protien-banana.png", desc: 'Protein-rich yogurt bowl with banana, oats, berries and seeds to support recovery.',
     calories: 390, protein: 30, carbs: 48, fats: 9, fiber: 7, prepTime: '7 mins',
     logged: false, bookmarked: false,
     ingredients: ['1 cup Greek Yogurt', '1 Banana', '1/3 cup Oats', '1/2 cup Berries', '1 tsp Chia Seeds'],
